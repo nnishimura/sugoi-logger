@@ -219,7 +219,7 @@ export interface JsonLogger {
     /**
      * id of this log
      */
-    request_id: string;
+    requestId: string;
 
     /**
      * levels of severity. starts with capital

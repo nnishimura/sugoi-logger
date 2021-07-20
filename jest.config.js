@@ -5,7 +5,7 @@ module.exports = {
     "coverageReporters": ["json", "lcov", "text", "clover", "text-summary"],
     "testEnvironment": "node",
     "testMatch": [
-        "**/*.unit.(ts|js)",
+        "**/test/**/*.+(ts|tsx|js)",
     ],
     "testPathIgnorePatterns": [
         "node_modules"

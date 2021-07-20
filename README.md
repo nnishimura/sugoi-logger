@@ -1,9 +1,9 @@
 # sugoi-logger
 
-Javascript logging module with support for syslog [RFC5424](https://tools.ietf.org/html/rfc5424) and json log format.
+📝 Javascript logging module with support for syslog [RFC5424](https://tools.ietf.org/html/rfc5424) and json log format.
 
 ## Features
-- Supports syslog or JSON logging format. 
+- Supports syslog and JSON logging format. 
 - Custom format is also supported with `options.formatter`
 - Adds an unique `requestId` to log messages. Can be used with express APIs.
 - Adds info about line number and filename to log messages.
@@ -98,7 +98,7 @@ logger.info('log message', { key: value })
    "application":"node",
    "hostname":"sugoiMachine",
    "level":"Error",
-   "request_id":"0514cf2c-d5b4-4289-9f7c-ea7ced1a1779",
+   "requestId":"0514cf2c-d5b4-4289-9f7c-ea7ced1a1779",
    "message":"log message",
    "pid":74955,
    "thread":74955,
