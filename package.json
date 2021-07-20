@@ -1,6 +1,6 @@
 {
   "name": "sugoi-logger",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Javascript logging module with support for syslog RFC5424",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
