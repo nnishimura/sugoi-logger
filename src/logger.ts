@@ -4,7 +4,7 @@
 
 import { LogOptions, Transport, LoggerOptions, Context, LogType, Formatter, StructuredData } from "./types";
 import { getDefaultLoggerConfig, getDefaultLogConfig } from "./config";
-import { getMessageId } from "./context";
+import { getRequestId } from "./context";
 
 export class Logger {
     private formatter: Formatter;
@@ -31,43 +31,43 @@ export class Logger {
         this.logType = formattedLogType || defaultLoggerConfig.logType;
     }
 
-    public debug (message: string, data?: LogOptions) {
-        this.log("debug", message, data);
+    public debug (message: string, options?: LogOptions) {
+        this.log("debug", message, options);
     }
 
-    public info (message: string, data?: LogOptions) {
-        this.log("info", message, data);
+    public info (message: string, options?: LogOptions) {
+        this.log("info", message, options);
     }
 
-    public notice (message: string, data?: LogOptions) {
-        this.log("notice", message, data);
+    public notice (message: string, options?: LogOptions) {
+        this.log("notice", message, options);
     }
 
-    public warning (message: string, data?: LogOptions) {
-        this.log("warning", message, data);
+    public warning (message: string, options?: LogOptions) {
+        this.log("warning", message, options);
     }
 
-    public error (message: string, data?: LogOptions) {
-        this.log("error", message, data);
+    public error (message: string, options?: LogOptions) {
+        this.log("error", message, options);
     }
 
-    public critical (message: string, data?: LogOptions) {
-        this.log("critical", message, data);
+    public critical (message: string, options?: LogOptions) {
+        this.log("critical", message, options);
     }
 
-    public alert (message: string, data?: LogOptions) {
-        this.log("alert", message, data);
+    public alert (message: string, options?: LogOptions) {
+        this.log("alert", message, options);
     }
 
-    public emergency (message: string, data?: LogOptions) {
-        this.log("emergency", message, data);
+    public emergency (message: string, options?: LogOptions) {
+        this.log("emergency", message, options);
     }
 
     private log (level: string, message: string, options: LogOptions = {}) {
         try {
             const defaultLogConfig = getDefaultLogConfig();
             const defaultLoggerConfig = getDefaultLoggerConfig();
-            const messageId = getMessageId();
+            const messageId = getRequestId();
 
             const context = options.context || this.context || defaultLogConfig.context;
             const formattedContext = messageId ? {

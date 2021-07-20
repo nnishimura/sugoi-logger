@@ -11,40 +11,40 @@ describe("format-to-json", () => {
     const logPatterns = [
         {
             message: "log message",
-            expected: {"application": "node", "data": {}, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "log message", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "node", "data": {}, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "log message", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         },
         {
             message: "log message with different request id",
             context: { messageId: 222 },
-            expected: {"application": "node", "data": {}, "hostname": "sugoiMachine", "level": "Error", "message_id": 222, "message": "log message with different request id", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "node", "data": {}, "hostname": "sugoiMachine", "level": "Error", "request_id": 222, "message": "log message with different request id", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         },
         {
             message: "log message with single meta info",
             data: { traffic: { ip: "192.0.2.0", counter: 100 } },
-            expected: {"application": "node", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}}, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "log message with single meta info", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "node", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}}, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "log message with single meta info", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         },
         {
             message: "log message with custom facility value",
             data: { traffic: { ip: "192.0.2.0", counter: 100 } },
             facility: 0, // kernel messages
-            expected: {"application": "node", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}}, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "log message with custom facility value", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "node", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}}, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "log message with custom facility value", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         },
         {
             message: "log message with 2 meta info",
             data: { traffic: { ip: "192.0.2.0", counter: 100 }, user: { userId: 123 } },
-            expected: {"application": "node", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}, "user": {"userId": 123}}, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "log message with 2 meta info", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "node", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}, "user": {"userId": 123}}, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "log message with 2 meta info", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         },
         {
             message: "log message with custom application name",
             application: "myapp",
             data: { traffic: { ip: "192.0.2.0", counter: 100 }, user: { userId: 123 } },
-            expected: {"application": "myapp", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}, "user": {"userId": 123}}, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "log message with custom application name", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "myapp", "data": {"traffic": {"counter": 100, "ip": "192.0.2.0"}, "user": {"userId": 123}}, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "log message with custom application name", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         },
         {
             message: "log message with structured data + falsy values",
             application: "myapp",
             data: { sdId: { nullKey: null, falseKey: false, emptyString: "" } as any },
-            expected: {"application": "myapp", "data": {"sdId": { "nullKey": null, "falseKey": false, "emptyString": "" } as any }, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "log message with structured data + falsy values", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
+            expected: {"application": "myapp", "data": {"sdId": { "nullKey": null, "falseKey": false, "emptyString": "" } as any }, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "log message with structured data + falsy values", "pid": 74955, "thread": 74955, "time": timestamp, "file": "sugoiCode.ts", "line": 30}
         }
     ];
 
@@ -104,6 +104,6 @@ describe("format-to-json", () => {
         logger.error("destroy all humans");
         const logParams = mockTransport.mock.calls[0][0] as LogOptions;
         const formatted = JSON.parse(logParams.message);
-        expect(formatted).toEqual({"application": "node", "data": {}, "hostname": "sugoiMachine", "level": "Error", "message_id": 111, "message": "destroy all humans", "pid": 74955, "thread": 74955, "time": timestamp, file: "sugoiCode.ts", "line": 30 });
+        expect(formatted).toEqual({"application": "node", "data": {}, "hostname": "sugoiMachine", "level": "Error", "request_id": 111, "message": "destroy all humans", "pid": 74955, "thread": 74955, "time": timestamp, file: "sugoiCode.ts", "line": 30 });
     });
 });

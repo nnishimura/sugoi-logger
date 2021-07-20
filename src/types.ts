@@ -5,7 +5,7 @@ This information is collected from the environment variable 'LOGGING_TYPE'
  */
 export enum LogType {
     syslog = "syslog",
-    json = 'json'
+    json = "json"
 }
 
 export interface Levels {
@@ -219,7 +219,7 @@ export interface JsonLogger {
     /**
      * id of this log
      */
-    message_id: string;
+    request_id: string;
 
     /**
      * levels of severity. starts with capital

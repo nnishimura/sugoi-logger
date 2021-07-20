@@ -9,15 +9,15 @@ export const loggerNamespace = createNamespace("writer");
 /**
  * ID of the namespace used in the logger
  */
- const loggerNamespaceId = "MESSAGE_ID";
+ const loggerNamespaceId = "request_id";
 
 /**
- * returns a middleware to reset current CLS namespace and sets a new message_id. 
+ * returns a middleware to reset current CLS namespace and sets a new request_id. 
  * 
  * * @param {(...args: any[]) => any}  callback - Function to call for this context
  * * @param {string}  messageId - messageId to set in logging message. defaults to uuidv4()
  */
-export function setMessageId (callback: (...args: any[]) => any, messageId?: string): void {
+export function setRequestId (callback: (...args: any[]) => any, messageId?: string): void {
     loggerNamespace.run(() => {
         loggerNamespace.set(loggerNamespaceId, messageId || uuidv4());
         callback();
@@ -25,8 +25,8 @@ export function setMessageId (callback: (...args: any[]) => any, messageId?: str
 }
 
 /**
- * returns a MESSAGE_ID from current CLS namespace
+ * returns a request_id from current CLS namespace
  */
-export function getMessageId() {
+export function getRequestId() {
     return loggerNamespace.get(loggerNamespaceId);
 }

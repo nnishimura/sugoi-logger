@@ -15,7 +15,7 @@ export function prepareFormatToJson (options: TransportOptions): JsonLogger {
         "application": options.application,
         "pid": options.pid,
         "thread": options.pid, // single threaded
-        "message_id": options.context?.messageId,
+        "request_id": options.context?.messageId,
         "level": formattedLevel,
         "message": options.message,
         "data": options.data,

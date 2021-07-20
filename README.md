@@ -29,26 +29,26 @@ Create your own logger and export it:
 
 ```js
 // main.js
-import { Logger, setMessageId } from 'logging';
+import { Logger, setRequestId } from 'logging';
 
 // create logger instance 
 export const logger = new Logger({
     application: 'my-application' // custom application name
 });
 
-// Use setMessageId function to persist messageId in CLS within the callback function. Logger will pick up the context from this.
+// Use setRequestId function to persist messageId in CLS within the callback function. Logger will pick up the context from this.
 // example as express middleware
-app.use((_req, _res, next) => setMessageId(next));
+app.use((_req, _res, next) => setRequestId(next));
 
 // example with other functions
 function doSomething() {
-   setMessageId(() => {
+   setRequestId(() => {
       doingSomething();
    })
 }
 
 // example with custom messageId
-app.use((req, _res, next) => setMessageId(next, req.headers.messageId));
+app.use((req, _res, next) => setRequestId(next, req.headers.messageId));
 
 ```
 
@@ -98,7 +98,7 @@ logger.info('log message', { key: value })
    "application":"node",
    "hostname":"sugoiMachine",
    "level":"Error",
-   "message_id":"0514cf2c-d5b4-4289-9f7c-ea7ced1a1779",
+   "request_id":"0514cf2c-d5b4-4289-9f7c-ea7ced1a1779",
    "message":"log message",
    "pid":74955,
    "thread":74955,
