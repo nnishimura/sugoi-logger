@@ -12,8 +12,7 @@
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "watch": "tsc -w",
     "test": "jest --forceExit --detectOpenHandles --coverage",
-    "test:watch": "jest --runInBand --watch",
-    "prepare": "yarn run build"
+    "test:watch": "jest --runInBand --watch"
   },
   "author": "nnishimura",
   "license": "ISC",
