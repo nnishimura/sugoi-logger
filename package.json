@@ -1,6 +1,6 @@
 {
   "name": "sugoi-logger",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "description": "Javascript logging module with support for syslog RFC5424",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
@@ -12,6 +12,7 @@
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "watch": "tsc -w",
     "test": "jest --forceExit --detectOpenHandles --coverage",
+    "prepublishOnly": "npm run build",
     "test:watch": "jest --runInBand --watch"
   },
   "author": "nnishimura",
