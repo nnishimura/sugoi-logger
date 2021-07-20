@@ -3,7 +3,7 @@
 📝 Javascript logging module with support for syslog [RFC5424](https://tools.ietf.org/html/rfc5424) and json log format.
 
 ## Features
-- Supports syslog and JSON logging format. 
+- Supports syslog and json logging format. 
 - Custom format is also supported with `options.formatter`
 - Adds an unique `requestId` to log messages. Can be used with express APIs.
 - Adds info about line number and filename to log messages.
@@ -82,37 +82,3 @@ logger.info('log message', { key: value })
 | context    | { [key:string]: any }                                                  | context of this log message in key-value format. Can be used in custom `formatter`                         |
 | transports | (( arg :   FormatterOptions )   =>   void)[]                           | set of logging transport functions                                                                         |
 | formatter  | ( arg :   FormatterOptions )   =>   string                             | formatter function for log message                                                                         |
-
-## Sample logs
-
-### type: syslog (RFC5424)
-
-```
-<187>1 2020-12-21T02:29:50.230Z pinpoint-adaptor-57b8b78b47-66jqj application 73222 dfe6efb3-1dcf-42f5-a82a-f8e86852f922 - src/sugoiCode.ts:30 log message
-```
-
-### type: JSON
-
-```json
-{
-   "application":"node",
-   "hostname":"sugoiMachine",
-   "level":"Error",
-   "requestId":"0514cf2c-d5b4-4289-9f7c-ea7ced1a1779",
-   "message":"log message",
-   "pid":74955,
-   "thread":74955,
-   "time":"2020-12-24T08:25:06.487Z",
-   "data":{
-      "traffic":{
-         "counter":100,
-         "ip":"192.0.2.0"
-      },
-      "user":{
-         "userId":123
-      }
-   },
-   "file": "src/sugoiCode.ts",
-   "lineNumber": 30
-}
-```
