@@ -21,6 +21,7 @@
     "type": "git",
     "url": "https://github.com/nnishimura/sugoi-logger"
   },
+  "keywords": ["logging", "logger", "syslog"],
   "dependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/cls-hooked": "^4.3.3",
